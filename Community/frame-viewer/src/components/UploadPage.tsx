@@ -13,8 +13,7 @@ const UploadPage: React.FC = () => {
     if (selectedFile) setFile(selectedFile);
   };
 
-  const handleUpload = async () => {
-    console.log("🚀 ~ handleUpload ~ file:", file);
+  const uploadFile = async () => {
     if (file) {
       try {
         setUploadStatus("Carregando...");
@@ -59,10 +58,10 @@ const UploadPage: React.FC = () => {
       <input
         type="file"
         title={fileName ?? "Nenhum arquivo selecionado"}
-        style={file ? {color: "transparent"} : { color: "black"} }
+        style={file ? { color: "transparent" } : { color: "black" }}
         onChange={handleFileChange}
       />
-      <button onClick={handleUpload}>Enviar</button>
+      <button onClick={uploadFile}>Enviar</button>
       {uploadStatus && <p>{uploadStatus}</p>}
       <div
         onDragOver={handleDragOver}

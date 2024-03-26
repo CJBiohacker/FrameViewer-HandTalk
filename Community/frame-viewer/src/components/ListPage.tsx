@@ -28,7 +28,7 @@ const ListPage: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {videos.map((video : Video) => (
+          {videos.map((video: Video) => (
             <tr key={video.id}>
               <td>{video.id}</td>
               <td>{video.fileName}</td>
