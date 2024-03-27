@@ -5,9 +5,9 @@ export default interface Video {
   createdAt: string;
 }
 
-export default interface Params {
-  id: string;
-}
+// export default interface Params {
+//   id: string;
+// }
 
 export default interface RouteError {
     statusText?: string;
