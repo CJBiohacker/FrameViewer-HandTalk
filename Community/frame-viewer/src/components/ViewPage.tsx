@@ -1,10 +1,10 @@
 import React, { Key, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchFrames } from "../utils/api";
-import Params from "../types/types-and-interfaces";
+// import Params from "../types/types-and-interfaces";
 
 const ViewPage: React.FC = () => {
-  const { id } = useParams<Params>();
+  const { id } = useParams<string>();
   const [frames, setFrames] = useState<unknown[]>([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const ViewPage: React.FC = () => {
     <div>
       <h2>Frames do Vídeo {id}</h2>
       <div>
-        {frames.map((frame:object, index:Key) => (
+        {frames.map((frame:unknown, index:Key) => (
           <img key={index} src={frame.url} alt={`Frame ${index}`} />
         ))}
       </div>
