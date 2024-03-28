@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: MeleteBold;
+  src: url(../fonts/melete/Melete-Bold.otf);
+}
+
+@font-face {
+  font-family: MeleteLight ;
+  src: url(../fonts/melete/Melete-Light.otf);
+}
+
+@font-face {
+  font-family: MeleteMedium;
+  src: url(../fonts/melete/Melete-Medium.otf);
+}
+
+@font-face {
+  font-family: MeleteRegular;
+  src: url(../fonts/melete/Melete-Regular.otf);
+}
+
+@font-face {
+  font-family: MeleteUltraLight;
+  src: url(../fonts/melete/Melete-UltraLight.otf);
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -10,4 +35,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#logo-text {
+  font-family: MeleteMedium;
 }

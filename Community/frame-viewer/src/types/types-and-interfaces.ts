@@ -5,9 +5,14 @@ export default interface Video {
   createdAt: string;
 }
 
-// export default interface Params {
-//   id: string;
-// }
+export interface Tab {
+  label: string;
+  path: string;
+}
+
+export interface TasProps {
+  tabs: Tab[];
+}
 
 export default interface RouteError {
     statusText?: string;
