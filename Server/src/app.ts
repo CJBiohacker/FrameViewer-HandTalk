@@ -17,10 +17,10 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ message: "Internal Server Error" });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT ?? 3001;
 
 app.listen(PORT, () => {
-  console.log(`O Servidor está rodando na porta: ${PORT}`);
+  console.log(`O Servidor está sendo executado na porta: ${PORT}`);
 });
 
 export default app;
