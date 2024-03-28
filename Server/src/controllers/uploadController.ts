@@ -1,5 +1,5 @@
 import * as admin from "firebase-admin";
-import * as fs from "fs";
+import * as fse from "fs-extra";
 import * as path from "path";
 import * as os from "os";
 import multer from "multer";
@@ -15,16 +15,14 @@ const upload = multer({ storage: multerStorageConfig }).single("video");
 export const uploadVideo = async (req: Request, res: Response) => {
   try {
     upload(req, res, async (err) => {
-      if (err instanceof multer.MulterError) {
+      if (err instanceof multer.MulterError)
         return res.status(400).json({ message: err.message });
-      } else if (err) {
+      else if (err)
         return res.status(500).json({ message: "Erro Interno no Servidor" });
-      }
 
       const file = req.file;
-      if (!file) {
+      if (!file)
         return res.status(400).json({ message: "Upload não foi realizado" });
-      }
 
       const videoId = uuidv4().replace(/-/g, "");
 
@@ -35,11 +33,11 @@ export const uploadVideo = async (req: Request, res: Response) => {
       console.time("uploadFramesTime");
       for (const frame of frames) {
         const destination = `${process.env.FIREBASE_STORAGE_FOLDER}/${videoId}/${frame.name}`;
-        uploadFrameToStorage(frame, destination);
+        await uploadFrameToStorage(frame, destination);
       }
       console.timeEnd("uploadFramesTime");
 
-      deleteTempDirFromOS(file.path, videoId);
+      deleteTempDirFromOS(videoId);
       await uploadMetadataToDatabase(videoId, file.originalname, frames.length);
 
       res.status(200).json({ message: "Upload realizado com sucesso" });
@@ -50,15 +48,9 @@ export const uploadVideo = async (req: Request, res: Response) => {
   }
 };
 
-const deleteTempDirFromOS = (filePath: string | undefined, videoId: string) => {
-  if (filePath) {
-    const tempDir = path.join(os.tmpdir(), "temp", videoId);
-    fs.unlinkSync(filePath);
-    fs.readdirSync(tempDir).forEach((file) => {
-      fs.unlinkSync(path.join(tempDir, file));
-    });
-    fs.rmdirSync(tempDir);
-  }
+const deleteTempDirFromOS = (videoId: string) => {
+  const tempDir = path.join(os.tmpdir(), "temp", videoId);
+  if (fse.existsSync(tempDir)) fse.removeSync(tempDir);
 };
 
 const uploadFrameToStorage = async (frame: Frame, destination: string) => {
@@ -66,7 +58,7 @@ const uploadFrameToStorage = async (frame: Frame, destination: string) => {
     destination: destination,
     gzip: true,
     metadata: {
-      contentType: "image/jpeg",
+      cacheControl: "public, max-age=31536000",
     },
   });
 };
@@ -76,10 +68,13 @@ const uploadMetadataToDatabase = async (
   fileName: string,
   frameLength: number
 ) => {
-  await db.collection("videos").doc(videoId).set({
-    id: videoId,
-    fileName,
-    frameCount: frameLength,
-    createdAt: admin.firestore.FieldValue.serverTimestamp(),
-  });
+  await db
+    .collection(`${process.env.FIRESTORE_DB_COLLECTION}`)
+    .doc(videoId)
+    .set({
+      id: videoId,
+      fileName: fileName,
+      frameCount: frameLength,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
 };
