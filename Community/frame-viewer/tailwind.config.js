@@ -7,6 +7,9 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
-  prefix: 'tw-'
+  plugins: [
+    
+  ],
+  prefix: 'tw-',
 }
+
