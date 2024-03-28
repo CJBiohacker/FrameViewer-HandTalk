@@ -71,7 +71,7 @@ const UploadPage: React.FC = () => {
           width: "300px",
           height: "150px",
           borderStyle: "dotted",
-          borderColor: "black",
+          borderColor: "blue",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
