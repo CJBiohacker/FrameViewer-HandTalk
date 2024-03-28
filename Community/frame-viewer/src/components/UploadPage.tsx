@@ -45,15 +45,16 @@ const UploadPage: React.FC = () => {
     setFileName(droppedFiles.name);
   };
 
+  const elementStyles = {
+    divContainer: "tw-flex tw-flex-col tw-gap-4 tw-items-center",
+    button:
+      "tw-text-xl tw-bg-violet-500 tw-rounded-full tw-px-6 tw-py-1 tw-text-white hover:tw-bg-violet-600 active:tw-bg-violet-700 focus:tw-outline-none focus:tw-ring focus:tw-ring-violet-300",
+    dragAndDropArea:
+      "tw-w-80 tw-h-40 tw-border-2 tw-border-dashed tw-border-blue-700 tw-flex tw-items-center tw-text-center",
+  };
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        alignItems: "center",
-      }}
-    >
+    <div className={elementStyles.divContainer}>
       <h2>Faça Upload do seu vídeo aqui</h2>
       <input
         type="file"
@@ -61,23 +62,16 @@ const UploadPage: React.FC = () => {
         style={file ? { color: "transparent" } : { color: "black" }}
         onChange={handleFileChange}
       />
-      <button onClick={uploadFile}>Enviar</button>
+      <button className={elementStyles.button} onClick={uploadFile}>
+        Enviar
+      </button>
       {uploadStatus && <p>{uploadStatus}</p>}
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        style={{
-          width: "300px",
-          height: "150px",
-          borderStyle: "dotted",
-          borderColor: "blue",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          backgroundColor: isOver ? "lightgreen" : "white",
-        }}
+        className={elementStyles.dragAndDropArea}
+        style={{ backgroundColor: isOver ? "lightgreen" : "white" }}
       >
         <p>{fileName ?? `Arraste e solte um arquivo aqui para o upload`}</p>
       </div>

@@ -14,28 +14,37 @@ const ListPage: React.FC = () => {
     getVideos();
   }, []);
 
+  const elementStyles = {
+    container: "tw-flex tw-flex-col tw-items-center tw-justify-center",
+    table: "tw-table-auto tw-border-collapse tw-border",
+    header: "tw-p-1 tw-border",
+    row: "tw-p-4 tw-border",
+    button:
+      "tw-text-xl tw-bg-violet-500 tw-rounded-full tw-px-6 tw-text-white hover:tw-bg-violet-600 active:tw-bg-violet-700 focus:tw-outline-none focus:tw-ring focus:tw-ring-violet-300",
+  };
+
   return (
-    <div>
-      <h2>Lista de Vídeos</h2>
-      <table>
+    <div className={elementStyles.container}>
+      <h2 className="tw-text-xl">Lista de Vídeos</h2>
+      <table className={elementStyles.table}>
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Nome do Arquivo</th>
-            <th>Quantidade de Frames</th>
-            <th>Data de Criação</th>
-            <th>Ações</th>
+            <th className={elementStyles.header}>Id</th>
+            <th className={elementStyles.header}>Nome do Arquivo</th>
+            <th className={elementStyles.header}>Quantidade de Frames</th>
+            <th className={elementStyles.header}>Data de Criação</th>
+            <th className={elementStyles.header}>Ações</th>
           </tr>
         </thead>
         <tbody>
           {videos.map((video: Video) => (
             <tr key={video.id}>
-              <td>{video.id}</td>
-              <td>{video.fileName}</td>
-              <td>{video.frameCount}</td>
-              <td>{video.createdAt}</td>
-              <td>
-                <button>Ver Frames</button>
+              <td className={elementStyles.row}>{video.id}</td>
+              <td className={elementStyles.row}>{video.fileName}</td>
+              <td className={elementStyles.row}>{video.frameCount}</td>
+              <td className={elementStyles.row}>{video.createdAt}</td>
+              <td className={elementStyles.row}>
+                <button className={elementStyles.button}>Ver Frames</button>
               </td>
             </tr>
           ))}
