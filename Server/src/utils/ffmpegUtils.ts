@@ -1,4 +1,6 @@
 import * as fs from "fs";
+import * as path from "path";
+import * as os from "os";
 import { exec } from "child_process";
 import { Frame } from "../types/types-and-interfaces";
 
@@ -8,8 +10,9 @@ export const extractFrames = (
 ): Promise<Frame[]> => {
   return new Promise((resolve, reject) => {
     const frames: Frame[] = [];
-    const tempDir = `./temp/${videoId}`;
 
+    // Create a /temp folder inside the current OS native temporary folder
+    const tempDir = path.join(os.tmpdir(), "temp", videoId);
     fs.mkdirSync(tempDir, { recursive: true });
 
     const filePath = `${tempDir}/video.mp4`;
@@ -20,8 +23,9 @@ export const extractFrames = (
         return;
       }
 
+      // Extract 2 frames per second from the video file
       exec(
-        `ffmpeg -i ${filePath} ${tempDir}/frame-%04d.jpg`,
+        `ffmpeg -i ${filePath} -vf fps=2 ${tempDir}/frame-%04d.jpg`,
         async (error, stdout, stderr) => {
           if (error) {
             reject(error);

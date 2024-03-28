@@ -1,12 +1,16 @@
 import * as admin from "firebase-admin";
-import { v4 as uuidv4 } from "uuid";
+import * as fs from "fs";
+import * as path from "path";
+import * as os from "os";
 import multer from "multer";
+import { v4 as uuidv4 } from "uuid";
 import { Request, Response } from "express";
 import { extractFrames } from "../utils/ffmpegUtils";
 import { db, storage } from "../database/firebaseConfig";
+import { Frame } from "../types/types-and-interfaces";
 
-const storageConfig = multer.memoryStorage();
-const upload = multer({ storage: storageConfig }).single("video");
+const multerStorageConfig = multer.memoryStorage();
+const upload = multer({ storage: multerStorageConfig }).single("video");
 
 export const uploadVideo = async (req: Request, res: Response) => {
   try {
@@ -22,31 +26,21 @@ export const uploadVideo = async (req: Request, res: Response) => {
         return res.status(400).json({ message: "Upload não foi realizado" });
       }
 
-      const videoId = uuidv4();
+      const videoId = uuidv4().replace(/-/g, "");
 
-      // Extract frames using ffmpeg
+      console.time("extractFramesTime");
       const frames = await extractFrames(file.buffer, videoId);
+      console.timeEnd("extractFramesTime");
 
-      // Upload frames to Firebase Storage
+      console.time("uploadFramesTime");
       for (const frame of frames) {
-        const destination = `frames/${videoId}/${frame.name}`;
-
-        await storage.upload(frame.path, {
-          destination: destination,
-          gzip: true,
-          metadata: {
-            cacheControl: "public, max-age=31536000",
-          },
-        });
+        const destination = `${process.env.FIREBASE_STORAGE_FOLDER}/${videoId}/${frame.name}`;
+        uploadFrameToStorage(frame, destination);
       }
+      console.timeEnd("uploadFramesTime");
 
-      // Save video metadata in Firestore
-      await db.collection("videos").doc(videoId).set({
-        id: videoId,
-        filename: file.originalname,
-        frameCount: frames.length,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
+      deleteTempDirFromOS(file.path, videoId);
+      await uploadMetadataToDatabase(videoId, file.originalname, frames.length);
 
       res.status(200).json({ message: "Upload realizado com sucesso" });
     });
@@ -54,4 +48,38 @@ export const uploadVideo = async (req: Request, res: Response) => {
     console.error(error);
     res.status(500).json({ message: "Erro Interno no Servidor" });
   }
+};
+
+const deleteTempDirFromOS = (filePath: string | undefined, videoId: string) => {
+  if (filePath) {
+    const tempDir = path.join(os.tmpdir(), "temp", videoId);
+    fs.unlinkSync(filePath);
+    fs.readdirSync(tempDir).forEach((file) => {
+      fs.unlinkSync(path.join(tempDir, file));
+    });
+    fs.rmdirSync(tempDir);
+  }
+};
+
+const uploadFrameToStorage = async (frame: Frame, destination: string) => {
+  await storage.upload(frame.path, {
+    destination: destination,
+    gzip: true,
+    metadata: {
+      contentType: "image/jpeg",
+    },
+  });
+};
+
+const uploadMetadataToDatabase = async (
+  videoId: string,
+  fileName: string,
+  frameLength: number
+) => {
+  await db.collection("videos").doc(videoId).set({
+    id: videoId,
+    fileName,
+    frameCount: frameLength,
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+  });
 };
