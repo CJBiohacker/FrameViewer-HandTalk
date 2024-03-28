@@ -15,8 +15,8 @@ export const uploadVideo = async (file: File) => {
   return data;
 };
 
-export const fetchVideos = async (): Promise<Video[]> => {
-  const response = await fetch(`${API_URL}/videos`);
+export const fetchVideosMetadata = async (): Promise<Video[]> => {
+  const response = await fetch(`${API_URL}/list`);
   const data = await response.json();
 
   return data;

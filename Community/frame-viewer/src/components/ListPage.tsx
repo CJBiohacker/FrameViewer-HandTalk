@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchVideos } from "../utils/api";
+import { fetchVideosMetadata } from "../utils/api";
 import Video from "../types/types-and-interfaces";
 
 const ListPage: React.FC = () => {
@@ -7,7 +7,7 @@ const ListPage: React.FC = () => {
 
   useEffect(() => {
     const getVideos = async () => {
-      const data = await fetchVideos();
+      const data = await fetchVideosMetadata();
       setVideos(data);
     };
 
