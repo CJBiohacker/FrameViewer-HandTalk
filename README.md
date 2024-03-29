@@ -1,6 +1,6 @@
 # FrameViewer
 
-Este projeto foi desenvolvido com base em um desafio técnico criado pela empresa Hand Talk para o cargo de Desenvolvedor Full Stack II - (AI Unit - Community).
+Este projeto foi desenvolvido com base em um desafio técnico elaborado pela empresa Hand Talk para o cargo de Desenvolvedor Full Stack II - (AI Unit - Community).
 Consiste em uma aplicação Full Stack em que o usuário pode realizar o upload de um arquivo de vídeo (via seleção de input ou drag'n'drop), extrair os frames desse vídeo, listar todos os videos salvos numa tabela e, ao clicar em um botão, visualizar o conjunto de frames.
 
 # Tecnologias
