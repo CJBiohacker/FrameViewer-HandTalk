@@ -136,7 +136,7 @@ for (const frame of frames) {
 console.timeEnd("uploadFramesTime");
 ```
 
-No método `extractFrames` localizado no arquivo `/Server/utils/ffmpeg.ts` teremos o fluxo de extração dos frames retornando ao `uploadController` onde faremos o upload para o bucket, e em sequência os metadados do vídeo quer serão listados na aba de Listagem no Client-Side. Utilizaremos a biblioteca  <a href="https://www.npmjs.com/package/ffmpeg" target="_blank">ffmpeg</a>(<a href="https://ffmpeg.org/documentation.html" target="_blank">docs</a>) para executar este processo, conforme os passos abaixo:
+No método `extractFrames` localizado no arquivo `/Server/utils/ffmpeg.ts` teremos o fluxo de extração dos frames retornando ao `uploadController` onde faremos o upload para o bucket, e em sequência os metadados do vídeo quer serão listados na aba de Listagem no Client-Side. Utilizaremos a biblioteca  <a href="https://www.npmjs.com/package/ffmpeg" target="_blank">ffmpeg</a> (<a href="https://ffmpeg.org/documentation.html" target="_blank">docs</a>) para executar este processo, conforme os passos abaixo:
 
 * Criar uma pasta `/temp` dentro da pasta `temp` nativa do Sistema Operacional (Linux => `/tmp`, Windows => `/temp`)
 * Salvar o arquivo dentro desta pasta /temp
