@@ -16,7 +16,8 @@ const ViewPage: React.FC = () => {
   }, [id]);
 
   const elementStyles = {
-    title: "tw-text-center tw-text-2xl tw-font-bold tw-mb-10 tw-my-4",
+    title:
+      "tw-text-center md:tw-text-2xl sm:tw-text-xl tw-font-bold tw-mb-10 tw-my-4",
     container: "tw-flex tw-flex-wrap tw-justify-center tw-gap-5",
     frameContainer:
       "tw-border-violet-500 tw-border-solid tw-border-2 tw-p-2 relative cursor-pointer",
@@ -25,7 +26,11 @@ const ViewPage: React.FC = () => {
 
   return (
     <div>
-      <h2 className={elementStyles.title}>Frames do Vídeo de ID: {id}</h2>
+      <h2 className={elementStyles.title}>
+        Frames do Vídeo de ID
+        <br />
+        {id}
+      </h2>
       <div className={elementStyles.container}>
         {frames.map((frame: unknown, index: Key) => (
           <figure className={elementStyles.frameContainer}>

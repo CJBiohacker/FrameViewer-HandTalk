@@ -49,6 +49,8 @@ const UploadPage: React.FC = () => {
     divContainer: "tw-flex tw-flex-col tw-gap-4 tw-items-center",
     button:
       "tw-text-xl tw-bg-violet-500 tw-rounded-full tw-px-6 tw-py-1 tw-text-white hover:tw-bg-violet-600 active:tw-bg-violet-700 focus:tw-outline-none focus:tw-ring focus:tw-ring-violet-300",
+    disabled:
+      "tw-text-xl tw-bg-gray-500 tw-rounded-full tw-px-6 tw-py-1 tw-text-white hover:tw-bg-gray-600",
     dragAndDropArea:
       "tw-w-80 tw-h-40 tw-border-2 tw-border-dashed tw-border-blue-700 tw-flex tw-items-center tw-text-center",
   };
@@ -62,7 +64,11 @@ const UploadPage: React.FC = () => {
         style={file ? { color: "transparent" } : { color: "black" }}
         onChange={handleFileChange}
       />
-      <button className={elementStyles.button} onClick={uploadFile}>
+      <button
+        className={file ? elementStyles.button : elementStyles.disabled}
+        onClick={uploadFile}
+        disabled={file ? false : true}
+      >
         Enviar
       </button>
       {uploadStatus && <p>{uploadStatus}</p>}
