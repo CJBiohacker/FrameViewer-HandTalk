@@ -3,7 +3,6 @@ import Tabs from "./Shared/Tabs";
 
 const defaultStyle = "tw-font-bold tw-text-center";
 const tabs = [
-  { label: "Home", path: "/" },
   { label: "Upload", path: "/upload" },
   { label: "Listagem", path: "/list" },
 ];

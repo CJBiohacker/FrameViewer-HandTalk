@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,  } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchVideosMetadata } from "../utils/api";
 import Video from "../types/types-and-interfaces";
 
 const ListPage: React.FC = () => {
   const [videos, setVideos] = useState<Video[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getVideos = async () => {
@@ -13,6 +15,10 @@ const ListPage: React.FC = () => {
 
     getVideos();
   }, []);
+
+  const viewFrames = (videoId:string) => {
+    navigate(`/view/${videoId}`);
+  }
 
   const elementStyles = {
     container: "tw-flex tw-flex-col tw-items-center tw-justify-center",
@@ -44,7 +50,7 @@ const ListPage: React.FC = () => {
               <td className={elementStyles.row}>{video.frameCount}</td>
               <td className={elementStyles.row}>{video.createdAt}</td>
               <td className={elementStyles.row}>
-                <button className={elementStyles.button}>Ver Frames</button>
+                <button className={elementStyles.button} onClick={ () => viewFrames(video.id)}>Ver Frames</button>
               </td>
             </tr>
           ))}

@@ -1,7 +1,6 @@
 import React, { Key, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchFrames } from "../utils/api";
-// import Params from "../types/types-and-interfaces";
 
 const ViewPage: React.FC = () => {
   const { id } = useParams<string>();

@@ -23,7 +23,7 @@ export const fetchVideosMetadata = async (): Promise<Video[]> => {
 };
 
 export const fetchFrames = async (videoId: string): Promise<string[]> => {
-  const response = await fetch(`${API_URL}/videos/${videoId}/frames`);
+  const response = await fetch(`${API_URL}/list/frames/${videoId}`);
   const data = await response.json();
 
   return data;
