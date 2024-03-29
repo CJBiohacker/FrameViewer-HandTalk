@@ -31,11 +31,12 @@ export const getFrames = async (req: Request, res: Response) => {
     const [files] = await storage.getFiles({ prefix: directoryPath });
 
     if (files.length > 0) {
-      const frameUrls = files.map(
-        (item: any) =>
-          `https://storage.googleapis.com/${storage.name}/${item.name}`
-      );
+      const urlPromises = files.map(async (file) => {
+        const url = await generateSignedUrl(file);
+        return url;
+      });
 
+      const frameUrls = await Promise.all(urlPromises);
       res.status(200).json(frameUrls);
     } else {
       res.status(404).json({ message: "Frames não foram encontrados." });
@@ -43,5 +44,24 @@ export const getFrames = async (req: Request, res: Response) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Erro Interno no Servidor" });
+  }
+};
+
+export const generateSignedUrl = async (
+  file: any,
+  expiresIn: number = 60 * 60 * 1000
+) => {
+  try {
+    const options = {
+      version: "v4",
+      action: "read",
+      expires: Date.now() + expiresIn,
+    };
+
+    const [url] = await file.getSignedUrl(options);
+    return url;
+  } catch (error) {
+    console.error("Error generating signed URL:", error);
+    throw error;
   }
 };
