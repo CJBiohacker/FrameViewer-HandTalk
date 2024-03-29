@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import TabProps from "../../types/types-and-interfaces";
+import { TabProps } from "../../types/types-and-interfaces";
 
 const Tabs: React.FC<TabProps> = ({tabs}) => {
   const location = useLocation();

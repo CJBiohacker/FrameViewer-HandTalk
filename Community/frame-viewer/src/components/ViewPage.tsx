@@ -4,11 +4,11 @@ import { fetchFrames } from "../utils/api";
 
 const ViewPage: React.FC = () => {
   const { id } = useParams<string>();
-  const [frames, setFrames] = useState<unknown[]>([]);
+  const [frames, setFrames] = useState<string[]>([]);
 
   useEffect(() => {
     const getFrames = async () => {
-      const data = await fetchFrames(id);
+      const data = await fetchFrames(id ?? '');
       setFrames(data);
     };
 
@@ -32,7 +32,7 @@ const ViewPage: React.FC = () => {
         {id}
       </h2>
       <div className={elementStyles.container}>
-        {frames.map((frame: unknown, index: Key) => (
+        {frames.map((frame: string, index: Key) => (
           <figure className={elementStyles.frameContainer}>
             <img
               key={index}
@@ -40,7 +40,7 @@ const ViewPage: React.FC = () => {
               alt={`Frame ${index}`}
               className={elementStyles.image}
             />
-            <figcaption className="tw-text-center">Frame {index}</figcaption>
+            <figcaption className="tw-text-center">Frame {index.toLocaleString()}</figcaption>
           </figure>
         ))}
       </div>
