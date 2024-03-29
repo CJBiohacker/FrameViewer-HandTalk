@@ -124,7 +124,7 @@ const serviceAccount = {
 };
 ```
 
-O processamento do vídeo e extração dos frames ocorre no arquivo ` /Server/src/controllers/uploadController.ts`. No trecho de código mostrado abaixo, temos um `console.time` declarado tanto no processo de extração dos frames quanto no upload destes para o bucket, contabilizando o tempo para métricas de performance e desempenho.
+O processamento do vídeo e extração dos frames ocorre no arquivo `/Server/src/controllers/uploadController.ts`. No trecho de código mostrado abaixo, temos um `console.time` declarado tanto no processo de extração dos frames quanto no upload destes para o bucket, contabilizando o tempo para métricas de performance e desempenho.
 
 ```
 console.time("extractFramesTime");
@@ -139,6 +139,7 @@ for (const frame of frames) {
 console.timeEnd("uploadFramesTime");
 ```
 
+
 No método `extractFrames` localizado no arquivo `/Server/utils/ffmpeg.ts` teremos o fluxo de extração dos frames retornando ao `uploadController` onde faremos o upload para o bucket, e em sequência os metadados do vídeo quer serão listados na aba de Listagem no Client-Side. Utilizaremos a biblioteca  <a href="https://www.npmjs.com/package/ffmpeg" target="_blank">ffmpeg</a> (<a href="https://ffmpeg.org/documentation.html" target="_blank">docs</a>) para executar este processo, conforme os passos abaixo:
 
 * Criar uma pasta `/temp` dentro da pasta `temp` nativa do Sistema Operacional (Linux => `/tmp`, Windows => `/temp`)
@@ -149,6 +150,7 @@ No método `extractFrames` localizado no arquivo `/Server/utils/ffmpeg.ts` terem
 * Realizar o upload de cada frame para o Firebase Storage (bucket).
 * Deletar a pasta `/temp` criada anteriormente com os frames, pra não acumular arquivos no servidor.
 * Realizar o upload dos metadados do vídeo no Firestore Database (NoSQL), finalizando o processo.
+
 
 Para resolver problemas de CORS ao solicitar o servidor, precisamos adicionar no arquivo `vite.config.js` um proxy para evitar problemas de concatenação de URL.
 Portanto, lembre-se de especificar a URL do seu servidor no arquivo `/Community/frame-viewer/vite.config.js` no atributo `server.proxy.target` contido dentro da função `defineConfig`, conforme mostrado no código abaixo:
