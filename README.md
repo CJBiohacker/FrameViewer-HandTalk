@@ -16,7 +16,7 @@ Consiste em uma aplicação Full Stack em que o usuário pode realizar o upload 
 
 # Pré-requisitos e Instalação
 
-- Baixe ou defina a versão LTS do NodeJS (use o [Node Version Manager](https://github.com/nvm-sh/nvm) para instalar a versão correta).
+- Baixe ou defina a versão LTS do NodeJS (use o <a href="https://github.com/nvm-sh/nvm" target="_blank">Node Version Manager</a>) para instalar a versão correta).
 - Clone este repositório.
 - Abra o terminal bash no repositório, altere o caminho do diretório para `/Server` e execute o comando `npm i` ou `npm install` para instalar todos os pacotes do BackEnd.
 - Altere o caminho do diretório para `/Community/frame-viewer` e execute o comando `yarn` ou `yarn install` para instalar todos os pacotes do FrontEnd.
@@ -76,7 +76,7 @@ O Controller está localizado no caminho `/`Server `/src/controllers` contendo a
 As rotas são todas definidas no caminho `/Server/src/routes` que será melhor especificado na seção `<a href="#restApi" >Instruções da REST API``</a>`.
 Você precisará criar um arquivo `.env` no caminho do diretório para `/Server`, onde passará os dados contidos na chave secreta `serviceAccount.json` que é gerada no console do Firebase. Clique no link abaixo:
 
-[Image do local onde gerar uma chave privada no Firebase](https://drive.google.com/file/d/1xvW682dnC873xTPQHdWelTmNTFO6AoMe/view?usp=sharing)
+<a href="https://drive.google.com/file/d/1xvW682dnC873xTPQHdWelTmNTFO6AoMe/view?usp=sharing" target="_blank">Image do local onde gerar uma chave privada no Firebase</a>
 
 #### Definindo o arquivo .evnv:
 
@@ -136,7 +136,7 @@ for (const frame of frames) {
 console.timeEnd("uploadFramesTime");
 ```
 
-No método `extractFrames` localizado no arquivo `/Server/utils/ffmpeg.ts` teremos o fluxo de extração dos frames retornando ao `uploadController` onde faremos o upload para o bucket, e em sequência os metadados do vídeo quer serão listados na aba de Listagem no Client-Side. Utilizaremos a biblioteca [ffmpeg](https://www.npmjs.com/package/ffmpeg "Pacote npm") ([docs](https://ffmpeg.org/documentation.html "Documentação Oficial")) para executar este processo, conforme os passos abaixo:
+No método `extractFrames` localizado no arquivo `/Server/utils/ffmpeg.ts` teremos o fluxo de extração dos frames retornando ao `uploadController` onde faremos o upload para o bucket, e em sequência os metadados do vídeo quer serão listados na aba de Listagem no Client-Side. Utilizaremos a biblioteca  <a href="https://www.npmjs.com/package/ffmpeg" target="_blank">ffmpeg</a>(<a href="https://ffmpeg.org/documentation.html" target="_blank">docs</a>) para executar este processo, conforme os passos abaixo:
 
 * Criar uma pasta `/temp` dentro da pasta `temp` nativa do Sistema Operacional (Linux => `/tmp`, Windows => `/temp`)
 * Salvar o arquivo dentro desta pasta /temp
