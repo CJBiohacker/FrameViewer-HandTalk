@@ -20,7 +20,7 @@ Consiste em uma aplicação Full Stack em que o usuário pode realizar o upload 
 - Clone este repositório.
 - Abra o terminal bash no repositório, altere o caminho do diretório para `/Server` e execute o comando `npm i` ou `npm install` para instalar todos os pacotes do BackEnd.
 - Altere o caminho do diretório para `/Community/frame-viewer` e execute o comando `yarn` ou `yarn install` para instalar todos os pacotes do FrontEnd.
-- Após tudo instalado, inicie o servidor local executando o comando `npm start` no caminho `/`Server``.
+- Após tudo instalado, inicie o servidor local executando o comando `npm start` no caminho `/Server`.
 - Em seguida, inicie a aplicação Web executando o comando `yarn run dev` no caminho `/Community/frame-viewer`.
 
 # Estrutura de Diretórios
@@ -121,7 +121,7 @@ const serviceAccount = {
 };
 ```
 
-O processamento do vídeo e extração dos frames ocorre no arquivo ` /Server/src/controllers/uploadController.ts` . No trecho de código mostrado abaixo, temos um `console.time `declarado tanto no processo de extração dos frames quanto no upload destes para o bucket, contabilizando o tempo para métricas de performance e desempenho.
+O processamento do vídeo e extração dos frames ocorre no arquivo ` /Server/src/controllers/uploadController.ts`. No trecho de código mostrado abaixo, temos um `console.time` declarado tanto no processo de extração dos frames quanto no upload destes para o bucket, contabilizando o tempo para métricas de performance e desempenho.
 
 ```
 console.time("extractFramesTime");
