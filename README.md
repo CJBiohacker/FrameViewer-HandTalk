@@ -76,7 +76,7 @@ O Controller está localizado no caminho `/`Server `/src/controllers` contendo a
 As rotas são todas definidas no caminho `/Server/src/routes` que será melhor especificado na seção `<a href="#restApi" >Instruções da REST API``</a>`.
 Você precisará criar um arquivo `.env` no caminho do diretório para `/Server`, onde passará os dados contidos na chave secreta `serviceAccount.json` que é gerada no console do Firebase:
 
-`<img src="https://raw.githubusercontent.com/CJBiohacker/FrameViewer-HandTalk/main/images/gerando-private-key-firebase.png?token=GHSAT0AAAAAACNY7AMMAYU6B5FVIT3RN36KZQHGSQA" alt="Chave Secreta no Firebase">`
+`<a href="https://raw.githubusercontent.com/CJBiohacker/FrameViewer-HandTalk/main/images/gerando-private-key-firebase.png?token=GHSAT0AAAAAACNY7AMMAYU6B5FVIT3RN36KZQHGSQA" target="_blank">Local para gerar chave privada no Firebase</a>`
 
 #### Definindo o arquivo .evnv:
 
@@ -95,7 +95,7 @@ FIREBASE_AUTH_PROVIDER_X509_CERT_URL=<valor do auth_provider_x509_cert_url da su
 FIREBASE_CLIENT_X509_CERT_URL=<valor do client_x509_cert_url da sua chave secreta gerada>
 FIREBASE_UNIVERSE_DOMAIN=<valor do universe_domain da sua chave secreta gerada>
 
-FIREBASE_STORAGE_BUCKET=<gs://<nome da sua aplicação no firebase>.appspot.com >
+FIREBASE_STORAGE_BUCKET="gs://<nome da sua aplicação no firebase>.appspot.com"
 FIREBASE_STORAGE_FOLDER=<nome da pasta criada no bucket>
 
 FIRESTORE_DB_COLLECTION=<nome da collection criada no banco de dados noSQL>
