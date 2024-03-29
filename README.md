@@ -76,6 +76,7 @@ O Controller está localizado no caminho `/Server/src/controllers` contendo as p
 
 Lembrando que os frames são salvos no Firebase Storage, o bucket que faz parte da plataforma de desenvolvimento do Firebase.
 As rotas são todas definidas no caminho `/Server/src/routes` que será melhor especificado na seção `<a href="#restApi" >Instruções da REST API``</a>`.<br>
+
 Você precisará criar um arquivo `.env` no caminho do diretório para `/Server`, onde passará os dados contidos na chave secreta `serviceAccount.json` que é gerada no console do Firebase. Clique no link abaixo:
 
 <a href="https://drive.google.com/file/d/1xvW682dnC873xTPQHdWelTmNTFO6AoMe/view?usp=sharing" target="_blank">Image do local onde gerar uma chave privada no Firebase</a>
