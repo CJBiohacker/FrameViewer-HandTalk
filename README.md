@@ -77,7 +77,7 @@ As rotas são todas definidas no caminho `/Server/src/routes` que será melhor e
 Você precisará criar um arquivo `.env` no caminho do diretório para `/Server`, onde passará os dados contidos na chave secreta `serviceAccount.json` que é gerada no console do Firebase:
 
 ```
-![Local da chave privada no Firebase](./image/gerando-private-key-firebase.png)
+![Local para gerar uma chave privada no Firebase](images/gerando-private-key-firebase.png)
 ```
 
 #### Definindo o arquivo .evnv:
