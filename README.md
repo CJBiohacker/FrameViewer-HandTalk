@@ -70,7 +70,7 @@ README.md
 
 # Como o Projeto funciona
 
-O projeto atual adota uma estrutura modular, que incorpora elementos da arquitetura MVC (Model-View-Controller).`<br>`
+O projeto atual adota uma estrutura modular, que incorpora elementos da arquitetura MVC (Model-View-Controller).<br>
 Com as partes Controller e Model no caminho `/Server`, e a parte View na pasta `/Community`.
 O Controller está localizado no caminho `/`Server `/src/controllers` contendo as principais funções que processam o vídeo, extraem e listam os frames, salva e consulta os metadados armazenados no banco de dados NoSQL do Firebase (Firestore Database). Lembrando que os frames são salvos no Firebase Storage, o bucket que faz parte da plataforma de desenvolvimento do Firebase.
 As rotas são todas definidas no caminho `/Server/src/routes` que será melhor especificado na seção `<a href="#restApi" >Instruções da REST API``</a>`.
