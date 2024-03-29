@@ -1,9 +1,8 @@
-import express from 'express';
-import { listAllVideos, getFrames } from '../controllers/listController';
-import { authenticate  } from '../middleware/middleware';
+import express from "express";
+import { listAllVideos, getFrames } from "../controllers/listController";
 
 const router = express.Router();
-router.get('/', authenticate, listAllVideos);
-router.get('/frames/:id', authenticate, getFrames);
+router.get("/", listAllVideos);
+router.get("/frames/:id", getFrames);
 
 export default router;
