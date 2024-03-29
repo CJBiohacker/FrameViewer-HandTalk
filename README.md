@@ -72,7 +72,9 @@ README.md
 
 O projeto atual adota uma estrutura modular, que incorpora elementos da arquitetura MVC (Model-View-Controller).<br>
 Com as partes Controller e Model no caminho `/Server`, e a parte View na pasta `/Community`.
-O Controller está localizado no caminho `/Server/src/controllers` contendo as principais funções que processam o vídeo, extraem e listam os frames, salva e consulta os metadados armazenados no banco de dados NoSQL do Firebase (Firestore Database).<br> Lembrando que os frames são salvos no Firebase Storage, o bucket que faz parte da plataforma de desenvolvimento do Firebase.
+O Controller está localizado no caminho `/Server/src/controllers` contendo as principais funções que processam o vídeo, extraem e listam os frames, salva e consulta os metadados armazenados no banco de dados NoSQL do Firebase (Firestore Database).<br> 
+
+Lembrando que os frames são salvos no Firebase Storage, o bucket que faz parte da plataforma de desenvolvimento do Firebase.
 As rotas são todas definidas no caminho `/Server/src/routes` que será melhor especificado na seção `<a href="#restApi" >Instruções da REST API``</a>`.<br>
 Você precisará criar um arquivo `.env` no caminho do diretório para `/Server`, onde passará os dados contidos na chave secreta `serviceAccount.json` que é gerada no console do Firebase. Clique no link abaixo:
 
