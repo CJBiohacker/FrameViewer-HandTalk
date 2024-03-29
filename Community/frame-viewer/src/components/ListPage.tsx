@@ -10,7 +10,12 @@ const ListPage: React.FC = () => {
   useEffect(() => {
     const getVideos = async () => {
       const data = await fetchVideosMetadata();
-      setVideos(data);
+      const sortByDesc = data.sort((a, b) => {
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        return dateB - dateA;
+      });
+      setVideos(sortByDesc);
     };
 
     getVideos();
