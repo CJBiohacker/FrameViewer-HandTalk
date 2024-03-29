@@ -76,7 +76,7 @@ O Controller está localizado no caminho `/`Server `/src/controllers` contendo a
 As rotas são todas definidas no caminho `/Server/src/routes` que será melhor especificado na seção `<a href="#restApi" >Instruções da REST API``</a>`.
 Você precisará criar um arquivo `.env` no caminho do diretório para `/Server`, onde passará os dados contidos na chave secreta `serviceAccount.json` que é gerada no console do Firebase:
 
-`<img src="/images/gerando-private-key-firebase.png" alt="Chave Secreta no Firebase">`
+`<img src="https://raw.githubusercontent.com/CJBiohacker/FrameViewer-HandTalk/main/images/gerando-private-key-firebase.png?token=GHSAT0AAAAAACNY7AMMAYU6B5FVIT3RN36KZQHGSQA" alt="Chave Secreta no Firebase">`
 
 #### Definindo o arquivo .evnv:
 
