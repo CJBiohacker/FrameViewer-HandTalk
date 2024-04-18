@@ -141,14 +141,14 @@ console.timeEnd("uploadFramesTime");
 
 In the `extractFrames` method located in the `/Server/utils/ffmpeg.ts` file, we will have the frame extraction flow returning to uploadController where we will upload it to the bucket, and subsequently the video metadata that will be listed in the Listing tab on the Client-Side. We will use the <a href="https://www.npmjs.com/package/ffmpeg" target="_blank">ffmpeg</a> (<a href="https://ffmpeg.org/documentation.html" target="_blank">docs</a>) library to execute this process, following the steps below:
 
-    - Create a `/temp` folder inside the native temp folder of the Operating System (Linux => /tmp, Windows => /temp)
-    - Save the file inside this `/temp` folder
-    - Run the ffmpeg command to start frame extraction (Configured for 2 frames per second)
-        - We can configure by modifying the fps value in the script: `ffmpeg -i${filePath} -vf fps=<frame number> ${tempDir}/frame-%04d.jpg`
-    - Create a loop structure naming each frame with a number, to finish the extraction process.
-    - Upload each frame to Firebase Storage (bucket).
-    - Delete the `/temp` folder created earlier with the frames, so as not to accumulate files on the server.
-    - Upload the video metadata to the Firestore Database (NoSQL), completing the process.
+- Create a `/temp` folder inside the native temp folder of the Operating System (Linux => /tmp, Windows => /temp)
+- Save the file inside this `/temp` folder
+- Run the ffmpeg command to start frame extraction (Configured for 2 frames per second)
+    - We can configure by modifying the fps value in the script: `ffmpeg -i${filePath} -vf fps=<frame number> ${tempDir}/frame-%04d.jpg`
+- Create a loop structure naming each frame with a number, to finish the extraction process.
+- Upload each frame to Firebase Storage (bucket).
+- Delete the `/temp` folder created earlier with the frames, so as not to accumulate files on the server.
+- Upload the video metadata to the Firestore Database (NoSQL), completing the process.
 
 To resolve CORS issues when requesting the server, we need to add a proxy in the `vite.config.js` file to avoid URL concatenation issues.
 Therefore, remember to specify the URL of your server in the `/Community/frame-viewer/vite.config.js` file in the `server.proxy.target` attribute contained within the `defineConfig` function, as shown in the code below:
